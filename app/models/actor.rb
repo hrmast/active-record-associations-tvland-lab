@@ -3,17 +3,14 @@ class Actor < ActiveRecord::Base
   has_many :shows, through: :characters
 
   def full_name
-     self.first name.last_name
+    self.first_name + " " + self.last_name
   end
 
   def list_roles
     #list all the characters the acter has
-    #alongside the show that the character is in.
-        peter = Actor.new(:first_name => "Peter", :last_name => "Dinklage")
-        tyrion = Character.new(:name => "Tyrion Lannister")
-        tyrion.actor = peter
-        thrones = Show.new(:name => "Game of Thrones")
-        tyrion.show = thrones
-        tyrion.save
+    #alongside the show that the character is in    
+    "#{self.characters[0].name} - #{self.shows[0].name}"
   end
 end
+
+
